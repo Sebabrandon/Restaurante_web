@@ -1,2 +1,134 @@
-# Restaurante_web
-html
+[restaurante.html](https://github.com/user-attachments/files/22306029/restaurante.html)
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Restaurante Preferido</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff8f0;
+      color: #333;
+    }
+
+    header {
+      background-color: #ff6600;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #ffa64d;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      background-color: #ffe0b3;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+      color: #cc5200;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #804000;
+    }
+
+    .menu {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .menu h2 {
+      color: #ff6600;
+    }
+
+    .menu-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .item {
+      background-color: #fff3e0;
+      padding: 20px;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background-color: #ff6600;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Restaurante Preferido</h1>
+    <p>¡Sabor que te enamora!</p>
+  </header>
+
+  <nav>
+    <a href="#">Inicio</a>
+    <a href="#">Menú</a>
+    <a href="#">Reservas</a>
+    <a href="#">Contacto</a>
+  </nav>
+
+  <section class="hero">
+    <h1>Bienvenido a Preferido</h1>
+    <p>Donde cada plato es tu nuevo favorito</p>
+  </section>
+
+  <section class="menu">
+    <h2>Nuestros Platillos</h2>
+    <div class="menu-items">
+      <div class="item">
+        <h3>Pollo a la Brasa</h3>
+        <p>Con papas doradas y ensalada</p>
+      </div>
+      <div class="item">
+        <h3>Lomo Saltado</h3>
+        <p>Salteado con papas y arroz</p>
+      </div>
+      <div class="item">
+        <h3>Ceviche Mixto</h3>
+        <p>Frescura de mar en cada bocado</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Restaurante Preferido. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
