@@ -1,6 +1,13 @@
 import os, sqlite3, subprocess, shutil, socket, threading, http.server, socketserver, webbrowser
 from datetime import datetime
 import tkinter as tk
+
+# Importar servicios de PDFs para que los botones funcionen en esta versión standalone
+try:
+    from app.pdf_service import imprimir_resumen_general, imprimir_total_ganancias, imprimir_total_ventas, imprimir_detalle_pedidos, imprimir_productos_vendidos
+except Exception:
+    # fallback: si no hay paquete app, no se romperá el arranque
+    imprimir_resumen_general = imprimir_total_ganancias = imprimir_total_ventas = imprimir_detalle_pedidos = imprimir_productos_vendidos = None
 from tkinter import messagebox, simpledialog, ttk, filedialog
 
 try:
@@ -1610,7 +1617,7 @@ class MainWindow:
             ])
 
             # Título
-            elements.append(Paragraph('REPORTE DE VENTAS Y GANANCIAS', title_style))
+            elements.append(Paragraph('REPORTE DE VENTAS Y GANANCIAS', title_style)),
             elements.append(Paragraph(f'Generado el: {datetime.now().strftime("%d/%m/%Y %H:%M:%S")}', normal_style))
             elements.append(Spacer(1, 20))
 
@@ -1976,7 +1983,23 @@ class MainWindow:
                      font=('Arial', 14)).pack(pady=50)
 
         # Botón para imprimir el reporte
-        ttk.Button(self.root, text='🖨️ Imprimir Reporte', command=lambda: self.imprimir_reporte_ventas(ganancias_data, productos_vendidos, total_ventas, total_costos, total_ganancias, num_pedidos), style='TButton').pack(pady=10)
+        btn_frame_reportes = ttk.Frame(self.root)
+        btn_frame_reportes.pack(pady=10)
+        ttk.Button(btn_frame_reportes, text='🖨️ Imprimir Ventas', 
+                   command=lambda: imprimir_total_ventas(total_ventas, num_pedidos), 
+                   style='TButton').pack(side='left', padx=5)
+        ttk.Button(btn_frame_reportes, text='🖨️ Imprimir Ganancias', 
+                   command=lambda: imprimir_total_ganancias(ganancias_data, total_ventas, total_costos, total_ganancias, num_pedidos), 
+                   style='TButton').pack(side='left', padx=5)
+        ttk.Button(btn_frame_reportes, text='🖨️ Resumen General', 
+                   command=lambda: imprimir_resumen_general(total_ventas, total_costos, total_ganancias, num_pedidos), 
+                   style='TButton').pack(side='left', padx=5)
+        ttk.Button(btn_frame_reportes, text='🖨️ Detalle Pedidos', 
+                   command=lambda: imprimir_detalle_pedidos(ganancias_data), 
+                   style='TButton').pack(side='left', padx=5)
+        ttk.Button(btn_frame_reportes, text='🖨️ Productos Vendidos', 
+                   command=lambda: imprimir_productos_vendidos(productos_vendidos), 
+                   style='TButton').pack(side='left', padx=5)
         ttk.Button(self.root, text='Volver al Menú Principal', command=self.pantalla_bienvenida, style='TButton').pack(pady=20)
 
 # --- 5. PUNTO DE ENTRADA ---
